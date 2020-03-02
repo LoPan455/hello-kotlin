@@ -16,17 +16,17 @@ fun main(args: Array<String>) {
     val anotherQuestion = Question()
     // The line below ill generate a compiler error:
   //    anotherQuestion = Question()
-    q.Answer = "42"
+    q.answer = "42"
     // The line below will generate a compiler error.  The class field "Question" is defined as a val and is therefore immutable
     // q.Question = "Where is my pizza?"
     q.display()
     // this won't work as expected
-    println("The answer is $q.Answer")
+    println("The answer is $q.answer")
     // the {} are required for any sort of expression evaluation
-    println("The answer to ${q.Question}is ${q.Answer}")
+    println("The answer to '${q.question}' is ${q.answer}")
 
     // Kotlin allows you to do direct == comparisons on Strings.  No need for .equals
-    if(q.Answer == q.CorrectAnswer) {
+    if(q.answer == q.correctAnswer) {
         println("You were correct")
     } else {
         println("try again")
@@ -36,7 +36,7 @@ fun main(args: Array<String>) {
     // init a String variable
     var message: String
     // run the same code
-    if (q.Answer == q.CorrectAnswer) {
+    if (q.answer == q.correctAnswer) {
         message = "You were correct"
     } else {
         message = "try again"
@@ -46,24 +46,33 @@ fun main(args: Array<String>) {
     // the value that's returned is the value in the block following the if expression
     // This will give us the same result.  Also, we can make "anotherMessage" a val as we don't do any reassignment in the
     // if / else code blocks.  Immutability is better.
-    val anotherMessage = if(q.Answer == q.CorrectAnswer) "You were correct" else "try again"
+    val anotherMessage = if(q.answer == q.correctAnswer) "You were correct" else "try again"
     println(anotherMessage)
 
-
-
-
+    // The 'when' statement in Kotlin:
+     q.printResult()
 
 }
 
-
-
 class Question {
-    var Answer:String = ""
-    val CorrectAnswer = "42"
-    val Question: String = "What is the answer to life, the universe and everything? "
+    var answer:String = ""
+    val correctAnswer = "42"
+    val question: String = "What is the answer to life, the universe and everything? "
 
     // String templates for simple variable
     fun display() {
-        println("You said $Answer")
+        println("You said $answer")
+    }
+
+    // when statement
+    fun printResult() {
+        when (answer) {
+            correctAnswer -> {
+                print ("You were correct")
+            }
+            else -> {
+                print("Try again?")
+            }
+        }
     }
 }
