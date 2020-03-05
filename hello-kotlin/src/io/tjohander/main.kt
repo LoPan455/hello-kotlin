@@ -1,3 +1,5 @@
+package io.tjohander
+
 import java.lang.NumberFormatException
 import java.util.*
 
@@ -18,10 +20,10 @@ fun main(args: Array<String>) {
     // val will set the property "anotherQuestion" to be immutable
     val anotherQuestion = Question()
     // The line below ill generate a compiler error:
-  //    anotherQuestion = Question()
+  //    anotherQuestion = io.tjohander.Question()
     q.answer = "42"
-    // The line below will generate a compiler error.  The class field "Question" is defined as a val and is therefore immutable
-    // q.Question = "Where is my pizza?"
+    // The line below will generate a compiler error.  The class field "io.tjohander.Question" is defined as a val and is therefore immutable
+    // q.io.tjohander.Question = "Where is my pizza?"
     q.display()
     // this won't work as expected
     println("The answer is $q.answer")
@@ -114,10 +116,6 @@ fun main(args: Array<String>) {
         print("$element is at index $index, ")
     }
     println()
-
-
-
-
 }
 
 class Question {
